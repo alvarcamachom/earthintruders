@@ -5,7 +5,7 @@ const port = 3001
 const Pool = require('pg').Pool
 const pool = new Pool({
   user: '',
-  host: 'spaceinvadersdatos.postgres.database.azure.com',
+  host: 'dbspaceinvaders.postgres.database.azure.com',
   database: '',
   password: '',
   port: 5432,
@@ -13,7 +13,7 @@ const pool = new Pool({
 
 app.use(express.json())
 app.use(function (req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', 'http://spaceinvadersdatos.postgres.database.azure.com');
+  res.setHeader('Access-Control-Allow-Origin', 'http://dbspaceinvaders.postgres.database.azure.com');
   res.setHeader('Access-Control-Allow-Methods', 'GET,POST,PUT,DELETE,OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Access-Control-Allow-Headers');
   next();
@@ -32,7 +32,7 @@ app.use(function (req, res, next) {
   const getMerchants = async () => {
     try {
       return await new Promise(function (resolve, reject) {
-        pool.query("SELECT * FROM ranking", (error, results) => {
+        pool.query("SELECT * FROM partidas", (error, results) => {
           if (error) {
             reject(error);
           }
