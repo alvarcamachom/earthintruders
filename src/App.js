@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div>
-      <h1>Merchants</h1>
+      <h1>EARTHINTRUDERS</h1>
       <ul>
         {merchants.map(merchant => (
           <li key={merchant.id}>{merchant.name}</li>
