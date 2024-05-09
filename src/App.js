@@ -1,34 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
-  const [merchants, setMerchants] = useState([]);
+  const [data, setData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:3001');
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        setMerchants(data);
-        console.log("Data fetched successfully");
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
+    fetch('http://localhost:3001/')
+      .then(response => response.json())
+      .then(data => setData(data))
+      .catch(error => console.error(error));
   }, []);
 
   return (
-    <div>
+    <div className="App">
       <h1>EARTHINTRUDERS</h1>
-      <ul>
-        {merchants.map(merchant => (
-          <li key={merchant.id}>{merchant.name}</li>
-        ))}
-      </ul>
+      {data ? (
+        data.map((item, index) => (
+          <div key={index}>
+            {/* Replace 'item.property' with the actual properties of the data */}
+            <p>{item.nombre}</p>
+          </div>
+        ))
+      ) : (
+        <p>Loading...</p>
+      )}
     </div>
   );
 }
