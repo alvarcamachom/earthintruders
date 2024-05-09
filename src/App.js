@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 
 function App() {
   const [merchants, setMerchants] = useState([]);
@@ -7,8 +6,12 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001');
-        setMerchants(response.data);
+        const response = await fetch('http://localhost:3001');
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setMerchants(data);
         console.log("Data fetched successfully");
       } catch (error) {
         console.error("Error fetching data:", error);
