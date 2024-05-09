@@ -16,12 +16,12 @@ function App() {
       {data ? (
         data.map((item, index) => (
           <div key={index}>
-            {/* Replace 'item.property' with the actual properties of the data */}
-            <p>{item.nombre}</p>
+            <p>Nombre: {item.nombre}</p>
+            <p>OtroDato: {item.fecha}</p>
           </div>
         ))
       ) : (
-        <p>Loading...</p>
+        <p>Puntuaciones</p>
       )}
     </div>
   );
