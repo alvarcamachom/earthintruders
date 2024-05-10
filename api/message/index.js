@@ -4,10 +4,10 @@ const port = 3001
 
 const Pool = require('pg').Pool
 const pool = new Pool({
-  user: '',
+  user: 'administrador',
   host: 'dbspaceinvaders.postgres.database.azure.com',
-  database: '',
-  password: '',
+  database: 'postgres',
+  password: 'rubenalvaroPAP3',
   port: 5432,
 });
 
@@ -32,6 +32,7 @@ app.use(function (req, res, next) {
   const getMerchants = async () => {
     try {
       return await new Promise(function (resolve, reject) {
+        console.log("Hello, world!");
         pool.query("SELECT * FROM partidas", (error, results) => {
           if (error) {
             reject(error);
